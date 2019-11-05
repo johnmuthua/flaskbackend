@@ -1,4 +1,4 @@
-from flask import Flask,request, jsonify
+from flask import Flask,request, jsonify, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os 
@@ -63,7 +63,7 @@ def get_all_products():
     return jsonify(result)
 
 #Update Product
-@app.route('/product/<int:id>', methods=['PUT'])
+@app.route('/product<id>', methods=['PUT'])
 def update_product(id):
     product = Product.query.get(id)
 
@@ -82,7 +82,7 @@ def update_product(id):
     return product_schema.jsonify(product)
 
 #Delete a product
-@app.route('/product/<int:id>', methods=['DELETE'])
+@app.route('/product<id>', methods=['DELETE'])
 def delete_product(id):
     product = Product.query.get(id)
     db.session.delete(product)
@@ -91,4 +91,4 @@ def delete_product(id):
     return product_schema.jsonify(product)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug='True')
